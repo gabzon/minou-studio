@@ -31,6 +31,28 @@ export const materialType = defineType({
       rows: 2,
     }),
     defineField({
+      name: 'careInstructions',
+      title: 'Care Instructions',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'en',
+          title: 'English',
+          type: 'array',
+          of: [{type: 'block'}],
+          description: 'Care instructions in English with rich text formatting',
+        }),
+        defineField({
+          name: 'hr',
+          title: 'Croatian',
+          type: 'array',
+          of: [{type: 'block'}],
+          description: 'Upute za održavanje na hrvatskom',
+        }),
+      ],
+      description: 'Multilingual care instructions for jewelry maintenance',
+    }),
+    defineField({
       name: 'image',
       title: 'Material Image',
       type: 'image',

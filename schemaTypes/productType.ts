@@ -24,7 +24,7 @@ export const productType = defineType({
     {
       name: 'seo',
       title: 'SEO',
-    }
+    },
   ],
   fields: [
     // Basic Information
@@ -33,7 +33,7 @@ export const productType = defineType({
       title: 'Product Name',
       type: 'string',
       description: 'The name of the jewelry piece',
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -42,9 +42,9 @@ export const productType = defineType({
       description: 'URL-friendly identifier',
       options: {
         source: 'name',
-        maxLength: 96
+        maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
@@ -63,19 +63,19 @@ export const productType = defineType({
         {
           type: 'image',
           options: {
-            hotspot: true
+            hotspot: true,
           },
           fields: [
             {
               name: 'alt',
               title: 'Alt Text',
               type: 'string',
-              description: 'Important for SEO and accessibility'
-            }
-          ]
-        }
+              description: 'Important for SEO and accessibility',
+            },
+          ],
+        },
       ],
-      validation: Rule => Rule.required().min(1)
+      validation: (Rule) => Rule.required().min(1),
     }),
 
     // Description (multilingual)
@@ -89,25 +89,17 @@ export const productType = defineType({
           title: 'English',
           type: 'array',
           of: [{type: 'block'}],
-          description: 'Detailed product description in English with rich text formatting'
+          description: 'Detailed product description in English with rich text formatting',
         }),
         defineField({
           name: 'hr',
           title: 'Croatian',
           type: 'array',
           of: [{type: 'block'}],
-          description: 'Detaljan opis proizvoda s bogatom tekstom'
+          description: 'Detaljan opis proizvoda s bogatom tekstom',
         }),
       ],
-      description: 'Detailed product description with rich text formatting'
-    }),
-
-    // Care Instructions
-    defineField({
-      name: 'careInstructions',
-      title: 'Care Instructions',
-      type: 'text',
-      rows: 3
+      description: 'Detailed product description with rich text formatting',
     }),
 
     // Pricing
@@ -117,7 +109,7 @@ export const productType = defineType({
       type: 'number',
       description: 'Price in EUR',
       group: 'pricing',
-      validation: Rule => Rule.required().min(0)
+      validation: (Rule) => Rule.required().min(0),
     }),
 
     defineField({
@@ -125,7 +117,7 @@ export const productType = defineType({
       title: 'Discount',
       type: 'number',
       description: 'Original price (for showing discounts)',
-      group: 'pricing'
+      group: 'pricing',
     }),
 
     // Category (Reference)
@@ -135,7 +127,7 @@ export const productType = defineType({
       type: 'reference',
       to: [{type: 'genre'}],
       group: 'classification',
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
@@ -144,7 +136,7 @@ export const productType = defineType({
       type: 'reference',
       to: [{type: 'category'}],
       group: 'classification',
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
 
     // Collection (Reference)
@@ -154,7 +146,7 @@ export const productType = defineType({
       type: 'reference',
       to: [{type: 'collection'}],
       group: 'classification',
-      description: 'Which collection does this belong to?'
+      description: 'Which collection does this belong to?',
     }),
 
     // Tags
@@ -165,8 +157,8 @@ export const productType = defineType({
       group: 'classification',
       of: [{type: 'string'}],
       options: {
-        layout: 'tags'
-      }
+        layout: 'tags',
+      },
     }),
 
     defineField({
@@ -183,7 +175,7 @@ export const productType = defineType({
       title: 'Featured Product',
       type: 'boolean',
       group: 'classification',
-      description: 'Show this product in featured sections'
+      description: 'Show this product in featured sections',
     }),
 
     defineField({
@@ -191,7 +183,7 @@ export const productType = defineType({
       title: 'New Arrival',
       type: 'boolean',
       group: 'classification',
-      description: 'Mark this as a new arrival'
+      description: 'Mark this as a new arrival',
     }),
 
     // Colors (References with additional details)
@@ -202,10 +194,10 @@ export const productType = defineType({
       group: 'specifications',
       of: [
         {
-            type: 'reference',
-            to: [{type: 'color'}],
-        }
-      ]
+          type: 'reference',
+          to: [{type: 'color'}],
+        },
+      ],
     }),
 
     // Materials (References - Multiple)
@@ -217,9 +209,9 @@ export const productType = defineType({
       of: [
         {
           type: 'reference',
-          to: [{type: 'material'}]
-        }
-      ]
+          to: [{type: 'material'}],
+        },
+      ],
     }),
 
     // Weight
@@ -228,7 +220,7 @@ export const productType = defineType({
       title: 'Weight',
       type: 'number',
       group: 'specifications',
-      description: 'Weight in grams'
+      description: 'Weight in grams',
     }),
 
     // Size Options (Unified)
@@ -247,9 +239,9 @@ export const productType = defineType({
           {title: 'Medium', value: 'M'},
           {title: 'Large', value: 'L'},
           {title: 'Extra Large', value: 'XL'},
-          {title: 'One Size', value: 'one-size'}
-        ]
-      }
+          {title: 'One Size', value: 'one-size'},
+        ],
+      },
     }),
 
     // Dimensions
@@ -260,25 +252,25 @@ export const productType = defineType({
       group: 'specifications',
       options: {
         collapsible: true,
-        collapsed: true
+        collapsed: true,
       },
       fields: [
         {
           name: 'length',
           title: 'Length (mm)',
-          type: 'number'
+          type: 'number',
         },
         {
           name: 'width',
           title: 'Width (mm)',
-          type: 'number'
+          type: 'number',
         },
         {
           name: 'height',
           title: 'Height/Thickness (mm)',
-          type: 'number'
-        }
-      ]
+          type: 'number',
+        },
+      ],
     }),
 
     // Inventory & Availability
@@ -287,21 +279,21 @@ export const productType = defineType({
       title: 'In Stock',
       type: 'boolean',
       initialValue: true,
-      group: 'inventory'
+      group: 'inventory',
     }),
     defineField({
       name: 'quantity',
       title: 'Quantity Available',
       type: 'number',
       initialValue: 1,
-      group: 'inventory'
+      group: 'inventory',
     }),
     defineField({
       name: 'sku',
       title: 'SKU',
       type: 'string',
       group: 'inventory',
-      description: 'Stock Keeping Unit'
+      description: 'Stock Keeping Unit',
     }),
 
     // SEO (multilingual)
@@ -312,7 +304,7 @@ export const productType = defineType({
       group: 'seo',
       options: {
         collapsible: true,
-        collapsed: false
+        collapsed: false,
       },
       fields: [
         defineField({
@@ -366,14 +358,14 @@ export const productType = defineType({
       media: 'images.0',
       price: 'price',
       category: 'category.name',
-      inStock: 'inStock'
+      inStock: 'inStock',
     },
     prepare({title, media, price, category, inStock}) {
       return {
         title: title,
         subtitle: `${category || 'No category'} - €${price} ${!inStock ? '(Out of Stock)' : ''}`,
-        media: media
+        media: media,
       }
-    }
-  }
+    },
+  },
 })

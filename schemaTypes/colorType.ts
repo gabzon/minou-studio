@@ -9,19 +9,29 @@ export const colorType = defineType({
       name: 'name',
       title: 'Color Name',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'hex',
       title: 'Hex Code',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'name',
+        maxLength: 96
+      },
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
       title: 'name',
-      subtitle: 'type'
-    }
-  }
+      subtitle: 'type',
+    },
+  },
 })
